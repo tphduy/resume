@@ -1,0 +1,94 @@
+name: Publish resume
+
+on:
+  push:
+    branches: [main, ci-build]
+    paths: [resume.md, .github/workflows/publish.yml]
+  schedule:
+    - cron: "17 3 * * 1" # weekly: keeps the font cache from expiring (7 days idle)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+env:
+  SF_URL: https://devimages-cdn.apple.com/design/resources/download/SF-Pro.dmg
+  SF_FACES: SF-Pro-Text-Regular SF-Pro-Text-RegularItalic SF-Pro-Text-Bold SF-Pro-Text-BoldItalic
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Cache every SF Pro face, not only the four used below, so a change in
+      # which faces the resume needs does not require re-downloading from Apple.
+      - name: Restore SF Pro cache
+        id: sf-cache
+        uses: actions/cache@v4
+        with:
+          path: sf-fonts
+          key: sf-pro-v1
+
+      - name: Download SF Pro
+        if: steps.sf-cache.outputs.cache-hit != 'true'
+        run: |
+          curl -fsSL -o SF-Pro.dmg "$SF_URL"
+          hdiutil attach SF-Pro.dmg -nobrowse -mountpoint "$RUNNER_TEMP/sf"
+          pkgutil --expand-full "$RUNNER_TEMP/sf/SFProFonts.pkg" "$RUNNER_TEMP/sfpkg"
+          mkdir -p sf-fonts
+          find "$RUNNER_TEMP/sfpkg" -name "*.otf" -exec cp {} sf-fonts/ \;
+          hdiutil detach "$RUNNER_TEMP/sf" -quiet
+          rm SF-Pro.dmg
+          test "$(ls sf-fonts | wc -l)" -gt 0
+
+      - name: Install the faces the resume uses
+        run: |
+          mkdir -p fonts
+          for face in $SF_FACES; do cp "sf-fonts/$face.otf" fonts/; done
+          ls fonts
+
+      - name: Install tools
+        run: brew install pandoc typst poppler
+
+      - name: Build
+        run: |
+          mkdir site
+          pandoc resume.md -s --metadata lang=en \
+            --metadata pagetitle="Tran Pham Hoang Duy – Staff Software Engineer" \
+            -B <(echo '<p><a href="resume.pdf">Download PDF</a> · <a href="resume.md">Markdown</a></p>') \
+            -o site/index.html
+          pandoc resume.md --pdf-engine=typst \
+            --pdf-engine-opt=--font-path --pdf-engine-opt=fonts \
+            -V mainfont="SF Pro Text" -V fontsize=10pt -V papersize=a4 \
+            -V margin.x=18mm -V margin.y=18mm \
+            -o site/resume.pdf
+          cp resume.md site/
+          touch site/.nojekyll
+
+      - name: Verify PDF
+        run: |
+          pdfinfo site/resume.pdf | grep -E "Pages|Tagged|Title"
+          pdffonts site/resume.pdf
+          pdffonts site/resume.pdf | grep -E "Heavy|Black|Rounded" && exit 1 || true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
