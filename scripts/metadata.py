@@ -134,7 +134,9 @@ def verify(out, source):
         require(found >= 0, f"PDF heading missing or out of order: {heading}")
         position = found + len(normalized(heading))
     contacts = next(line for line in markdown.splitlines() if "mailto:" in line)
-    for phone in re.findall(r"\+\d[\d ]+\d", contacts):
+    # Inspect visible labels, not compact phone numbers inside tel: destinations.
+    visible_contacts = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", contacts)
+    for phone in re.findall(r"\+\d[\d ]+\d", visible_contacts):
         require(normalized(phone) in text, f"PDF phone missing: {phone}")
     links = re.findall(r"\]\(([^)]+)\)", markdown)
     urls = run("pdfinfo", "-url", path)
