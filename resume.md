@@ -2,13 +2,13 @@
 
 **Staff Software Engineer** · Mobile Infrastructure · AI-Native Engineering
 
-Singapore · [LinkedIn](https://www.linkedin.com/in/tphduy/) · [tphduy@gmail.com](mailto:tphduy@gmail.com) · +84 383 330 246 · +65 8196 9978
+Singapore · [LinkedIn](https://www.linkedin.com/in/tphduy/) · [tphduy@gmail.com](mailto:tphduy@gmail.com) · [+84 383 330 246](tel:+84383330246) · [+65 8196 9978](tel:+6581969978)
 
 ## Summary
 
 Staff Software Engineer with **10 years of experience** turning difficult problems into maintainable code—and occasionally discovering I wrote the difficult problem. My work has grown from **native Apple development** into architecture, performance, infrastructure, cross-platform systems, and now **AI-native engineering**.
 
-Clean Code and Clean Architecture have been recurring concerns throughout that journey. To me, they start with **clear responsibilities and boundaries**. A simple MVC application can be clean; Protocol-Oriented Programming or Functional programming can fit a different problem. **There is no silver bullet.** I choose for the behavior, the team, and the delivery constraints, and question abstractions that make the next change more expensive. **Sometimes the best code is the code we never need to write**.
+Clean Code and [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) have been recurring concerns throughout that journey. To me, they start with **clear responsibilities and boundaries**. A simple MVC application can be clean; Protocol-Oriented Programming or Functional programming can fit a different problem. **There is no silver bullet.** I choose for the behavior, the team, and the delivery constraints, and question abstractions that make the next change more expensive. **Sometimes the best code is the code we never need to write**.
 
 I want engineering decisions to start with **problems users and stakeholders actually face**. That means testing assumptions, discussing trade-offs, and letting teammates challenge and improve the approach. Delivery pressure is real; so is the cost of what we leave behind. I aim for choices the team understands, can maintain, and can adapt as we learn what works.
 
@@ -22,11 +22,11 @@ I design for **the next engineer and, increasingly, the next AI agent**. As agen
 
 At OKX, my work grew from native application development into observability, shared systems, and AI-native delivery. I had spent years designing for the next engineer. Then the next engineer arrived as an agent, and “they’ll work out what I meant” became a less comfortable architectural decision.
 
-- **Brought engineering principles into AI-native delivery.** Joined the SWAT team that delivered the agentic pipeline MVP between March and May 2026 and continued developing it after rollout. The production workflow spans shared Rust logic and native iOS and Android implementations. In owning its review stage, I applied clear responsibilities and separation of concerns through isolated review perspectives, configurable components, and structured findings kept separate from workflow decisions.
+- **Brought engineering principles into AI-native delivery.** Joined the SWAT team that delivered the agentic pipeline MVP between March and May 2026 and continued developing it after rollout. The production workflow spans shared [Rust](https://www.rust-lang.org) logic and native iOS and Android implementations. In owning its review stage, I applied clear responsibilities and separation of concerns through isolated review perspectives, configurable components, and structured findings kept separate from workflow decisions.
 
 - **Balanced delivery speed with maintainable engineering.** Applied familiar engineering principles to an evolving AI-native workflow: explicit requirements, separation of concerns, and independently testable components. Created specs, tests, evals, and mocks to help humans and agents examine behavior and revise assumptions while delivery continued.
 
-- **Owned the application-wide APM system and built development tooling.** Owned APM instrumentation, telemetry, monitoring, alerting, and production diagnosis. Built internal JavaScript MCP tooling and an early OKX trading alpha inside ChatGPT using OpenAI’s Apps SDK; the organization did not pursue the alpha further.
+- **Owned the application-wide APM system and built development tooling.** Owned APM instrumentation, telemetry, monitoring, alerting, and production diagnosis. Built internal JavaScript [MCP](https://modelcontextprotocol.io) tooling and an early OKX trading alpha inside ChatGPT using OpenAI’s [Apps SDK](https://developers.openai.com/apps-sdk); the organization did not pursue the alpha further.
 
 - **Received OKX’s Best Rookie 2025 award** after joining that year.
 
@@ -42,11 +42,11 @@ At Vestiaire Collective, I learned that good engineering depends on how well peo
 
 - **Led the iOS work to support new languages and markets.** Vestiaire’s custom localization approach extended from mobile through the APIs, departing from standard locale conventions and native platform behavior. Supporting each language meant reconciling those differences across formatting, settings, and external services. Established localization approaches and aligned product owners, designers, and mobile and backend engineers around them, driving the work toward industry standards while refactoring localization code and unifying formatters under launch deadlines.
 
-- **Learned to look beyond the mobile implementation through the Zendesk integration.** Helped lead the work alongside the Android engineer, bringing together Zendesk’s sales engineers and our mobile and backend teams. Decisions depended on what the business needed, what the SDK supported, and how the pieces would behave together.
+- **Learned to look beyond the mobile implementation through the [Zendesk](https://www.zendesk.com) integration.** Helped lead the work alongside the Android engineer, bringing together Zendesk’s sales engineers and our mobile and backend teams. Decisions depended on what the business needed, what the SDK supported, and how the pieces would behave together.
 
 - **Shaped product decisions with A/B/C experiments.** My involvement grew from implementing changes to questioning what we should try and why. Contributed hypotheses alongside product owners and evaluated results, building a better understanding of customer journeys and the business trade-offs behind the work.
 
-- **Improved existing features while contributing to the shared Design System.** Refactored features with SwiftUI within an Objective-C, Swift, and UIKit application, improving rendering, test coverage, and shared UI components. Supporting iOS 15 while newer SwiftUI capabilities required iOS 16 meant balancing product requirements with compatibility work and the technical debt it could leave behind.
+- **Improved existing features while contributing to the shared Design System.** Refactored features with [SwiftUI](https://developer.apple.com/xcode/swiftui/) within an Objective-C, Swift, and UIKit application, improving rendering, test coverage, and shared UI components. Supporting iOS 15 while newer SwiftUI capabilities required iOS 16 meant balancing product requirements with compatibility work and the technical debt it could leave behind.
 
 ### Tiki — Senior Software Engineer (iOS)
 
@@ -56,13 +56,13 @@ At Tiki, the engineering practices I had begun developing at VinID became a stro
 
 - **Led the iOS team rebuilding TikiNgon during COVID-19, when grocery access became an urgent human need.** Time-to-market was non-negotiable. People needed to buy fresh food during quarantine, and we needed to deliver as soon as possible. Our grounding in Clean Code and Clean Architecture shaped how we approached that pressure. We understood how a shortcut could save a day and make every change the following week harder. The challenge was choosing what needed structure immediately, what needed flexibility, and what could remain simple.
 
-- **Adapted how we worked to protect delivery time.** During the rebuild, we used Kanban to organize the urgent work. Communication remained essential, but meetings competed with the time engineers needed to build. We kept interfaces aligned across teams while remaining willing to adjust them as implementation exposed practical constraints. Alignment was something we maintained throughout development, with room to revise what we had agreed.
+- **Adapted how we worked to protect delivery time.** During the rebuild, we used [Kanban](https://en.wikipedia.org/wiki/Kanban_(development)) to organize the urgent work. Communication remained essential, but meetings competed with the time engineers needed to build. We kept interfaces aligned across teams while remaining willing to adjust them as implementation exposed practical constraints. Alignment was something we maintained throughout development, with room to revise what we had agreed.
 
 - **Built interchangeable widgets with clear responsibilities.** The homepage, product detail page, and other screens could share the same widgets. Each widget represented a collection-view section conforming to a shared protocol: the parent controlled its lifecycle, while the widget managed its own data, preferred layout, and actions, delegating actions upward when needed. Using Airbnb’s [MagazineLayout](https://github.com/airbnb/MagazineLayout) for collection-view layout, we kept page composition generic while allowing each widget to handle its own behavior. Reuse came from a consistent contract that let a widget belong on more than one page.
 
-- **Made production flexibility part of the design.** API responses and remote configuration controlled widget composition and behavior. When something needed adjusting after release, we could do more than disable a section—we could change supported behavior remotely, reducing the need for an application hotfix. We invested in that flexibility where it served a practical need, while keeping fixed behavior straightforward under YAGNI.
+- **Made production flexibility part of the design.** API responses and remote configuration controlled widget composition and behavior. When something needed adjusting after release, we could do more than disable a section—we could change supported behavior remotely, reducing the need for an application hotfix. We invested in that flexibility where it served a practical need, while keeping fixed behavior straightforward under [YAGNI](https://martinfowler.com/bliki/Yagni.html).
 
-- **Decoupled navigation between modules through universal links.** This gave us flexibility in how experiences connected without tying navigation directly to another module’s implementation. Alongside reusable widgets, it helped us build around boundaries that could accommodate change. We balanced reuse and scalability with DRY and YAGNI, keeping fixed behavior simple where flexibility was unnecessary.
+- **Decoupled navigation between modules through [universal links](https://developer.apple.com/ios/universal-links/).** This gave us flexibility in how experiences connected without tying navigation directly to another module’s implementation. Alongside reusable widgets, it helped us build around boundaries that could accommodate change. We balanced reuse and scalability with DRY and YAGNI, keeping fixed behavior simple where flexibility was unnecessary.
 
 - **Learned to turn an idea into work we could deliver together.** I began scheduling discussions myself, bringing sketches, and working through proposals with designers and stakeholders. Taking initiative meant giving an idea enough shape for others to question it, improve it, and help bring it into production. Following that process widened my understanding of engineering: the work included building shared understanding and carrying a proposal through the decisions needed to release it.
 
@@ -76,11 +76,11 @@ At Tiki, the engineering practices I had begun developing at VinID became a stro
 
 **Ho Chi Minh City, Vietnam** · Feb 2019–Jan 2021
 
-I feel lucky to have joined VinID when I did. Vingroup was investing heavily in technology and bringing together experienced engineers, and I was among the early members of that journey. I had studied architectural principles before, but this was my first opportunity to practice them with a team working to high engineering standards. It was where the engineering practices I had read about became habits I could develop with others, and where I first practiced Agile and Scrum. From Uber RIBs and reactive data flow to release cycles, estimation, and retrospectives, each new responsibility widened my understanding of the work—and of the care needed when many engineers are building the same application.
+I feel lucky to have joined VinID when I did. Vingroup was investing heavily in technology and bringing together experienced engineers, and I was among the early members of that journey. I had studied architectural principles before, but this was my first opportunity to practice them with a team working to high engineering standards. It was where the engineering practices I had read about became habits I could develop with others, and where I first practiced Agile and Scrum. From [Uber RIBs](https://github.com/uber/RIBs) and reactive data flow to release cycles, estimation, and retrospectives, each new responsibility widened my understanding of the work—and of the care needed when many engineers are building the same application.
 
 - **Put architectural principles into production practice with Uber RIBs.** Applied Clean Code and Clean Architecture while developing features and reusable components, learning how responsibilities and boundaries held up as the application evolved.
 
-- **Learned to develop and release alongside 30+ engineers in a shared repository.** Practiced Conventional Commits and saw the value of a clean, traceable Git history. Git flow introduced me to release candidates and hotfixes, and how multiple features and bug fixes could progress in parallel through a shared release cycle.
+- **Learned to develop and release alongside 30+ engineers in a shared repository.** Practiced [Conventional Commits](https://www.conventionalcommits.org) and saw the value of a clean, traceable Git history. Git flow introduced me to release candidates and hotfixes, and how multiple features and bug fixes could progress in parallel through a shared release cycle.
 
 - **Began practicing Agile and Scrum in production development.** Worked with story points, estimation, and retrospectives, learning how a team plans shared work, discusses uncertainty, and adjusts its approach as it learns.
 
@@ -88,7 +88,7 @@ I feel lucky to have joined VinID when I did. Vingroup was investing heavily in 
 
 - **Designed reusable, generic components around team standards.** Learned to consider how a component would be shared and maintained beyond its original feature, balancing flexibility with clear responsibilities.
 
-- **Implemented Bazel to improve build times.** Reduced compilation time from approximately 12 minutes to 5 minutes on the Intel MacBooks used at the time.
+- **Implemented [Bazel](https://bazel.build) to improve build times.** Reduced compilation time from approximately 12 minutes to 5 minutes on the Intel MacBooks used at the time.
 
 ### VNG Corporation — Junior Software Engineer (iOS)
 
@@ -104,7 +104,7 @@ VNG was an early chapter in building the native iOS foundation I would carry int
 
 - **Optimized scrolling for large, complex lists and built customizable UI components**, connecting implementation choices with how the application felt to use.
 
-- **Expanded my experience beyond individual screens.** Implemented HLS video streaming, improved internal networking frameworks, handled local and remote notifications, and built a news-focused iMessage extension.
+- **Expanded my experience beyond individual screens.** Implemented [HLS](https://developer.apple.com/streaming/) video streaming, improved internal networking frameworks, handled local and remote notifications, and built a news-focused iMessage extension.
 
 ### ExecutionLab — iOS Engineer
 
