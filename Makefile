@@ -12,7 +12,7 @@ TITLE := $(shell python3 $(METADATA_TOOL) title)
 
 PDF_FLAGS := --pdf-engine=typst -V mainfont=Times
 
-.PHONY: all html pdf site verify
+.PHONY: all html pdf site verify e2e
 
 all: site
 
@@ -57,3 +57,7 @@ $(OUT)/sitemap.xml: $(METADATA) $(METADATA_TOOL) Makefile
 # Check published metadata and basic PDF parsing/accessibility structure.
 verify: site
 	python3 $(METADATA_TOOL) verify --out $(OUT) --source $(SOURCE)
+
+# Browser checks use the same artifacts validated above.
+e2e: verify
+	RESUME_OUT="$(abspath $(OUT))" npm run test:e2e

@@ -3,16 +3,27 @@ name: Publish resume
 on:
   push:
     branches: [main, ci-build]
-    paths: [resume.md, Makefile, metadata.json, 'scripts/**', 'templates/**', styles/resume.css, .github/workflows/publish.yml]
+    paths: &tested-paths
+      - resume.md
+      - Makefile
+      - metadata.json
+      - 'scripts/**'
+      - 'templates/**'
+      - styles/resume.css
+      - 'tests/**'
+      - playwright.config.ts
+      - package.json
+      - package-lock.json
+      - .github/workflows/publish.yml
+  pull_request:
+    paths: *tested-paths
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
+  group: resume-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -24,17 +35,45 @@ jobs:
       - name: Install tools
         run: brew install pandoc typst poppler
 
-      - name: Build and verify
-        run: make site verify OUT=site
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install browser test dependencies
+        run: |
+          npm ci
+          npx playwright install chromium
+
+      - name: Build, verify, and test
+        run: make e2e OUT=site
+
+      - name: Retain browser test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-test-evidence
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+          if-no-files-found: ignore
 
       - uses: actions/upload-pages-artifact@v3
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         with:
           path: site
 
   deploy:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     environment:
       name: github-pages
       url: ${{ steps.deploy.outputs.page_url }}

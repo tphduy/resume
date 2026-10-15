@@ -16,3 +16,19 @@ Web presentation lives in `templates/web.html` and `styles/resume.css`. An HTML-
 PDFs use Times with Pandoc/Typst defaults for page layout. Web styling does not affect the PDF.
 
 Variable: `OUT` (default `site`).
+
+## Browser checks
+
+Install Node.js 24 and the build tools above:
+
+```bash
+npm ci
+npx playwright install chromium
+make e2e
+```
+
+`make e2e` builds, verifies, and tests downloads, keyboard access, responsive layouts, and light/dark contrast in Chromium. Tests check behavior rather than exact styling or resume wording. CI gates publishing on these checks and retains reports and failure evidence for seven days.
+
+The managed test server uses port 8766; override with `E2E_PORT`. Custom output: `make e2e OUT=/absolute/path` (no spaces).
+
+Debug: `npm run test:e2e:headed`. Report: `npx playwright show-report`. For custom output, set `RESUME_OUT` when running npm directly.

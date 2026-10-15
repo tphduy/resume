@@ -2,3 +2,7 @@ site/
 fonts/
 sf-fonts/
 .DS_Store
+
+node_modules/
+playwright-report/
+test-results/
