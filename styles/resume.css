@@ -1,0 +1,219 @@
+:root {
+  color-scheme: light dark;
+  --background: #fff;
+  --text: #1d1d1f;
+  --muted: #606065;
+  --rule: #dedee3;
+  --link: #0066cc;
+  --button: #0071e3;
+  --button-hover: #0067d0;
+  --focus: #0066cc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 18px;
+  line-height: 1.65;
+  background: var(--background);
+  color: var(--text);
+  -webkit-text-size-adjust: 100%;
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; }
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 0.06em;
+}
+
+a:hover { text-decoration-thickness: 0.1em; }
+
+a:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 5px;
+  border-radius: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+  padding: 10px 18px;
+  border-radius: 8px;
+  background: var(--background);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+.hero {
+  max-width: 1048px;
+  margin: 0 auto;
+  padding: 104px 24px 72px;
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(36px, 5.3vw, 64px);
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.hero-role {
+  max-width: 780px;
+  margin: 24px auto 0;
+  font-size: 22px;
+  line-height: 1.5;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+
+.hero-role strong { font-weight: 600; }
+
+.hero-role p, .hero-contact p { margin: 0; }
+
+.hero-contact {
+  max-width: 780px;
+  margin: 18px auto 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+  text-wrap: balance;
+  overflow-wrap: anywhere;
+}
+
+.hero-contact a { white-space: nowrap; }
+
+.downloads {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 36px auto 0;
+}
+
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  min-width: 212px;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: var(--button);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: background-color 120ms ease;
+}
+
+.download-button:hover { background: var(--button-hover); }
+
+.download-button:focus-visible { border-radius: 999px; }
+
+.download-note {
+  max-width: 720px;
+  margin: 20px auto 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+  text-wrap: balance;
+}
+
+main {
+  max-width: 808px;
+  margin: 0 auto;
+  padding: 56px 24px 112px;
+  border-top: 1px solid var(--rule);
+  overflow-wrap: break-word;
+}
+
+h2, h3 {
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+h2 {
+  margin: 0 0 28px;
+  font-size: 36px;
+  line-height: 1.2;
+}
+
+h3 {
+  margin: 0 0 12px;
+  font-size: 25px;
+  line-height: 1.3;
+}
+
+p { margin: 0 0 24px; }
+
+strong { font-weight: 600; }
+
+.level2 + .level2 { margin-top: 64px; }
+
+.level3 > p:first-of-type {
+  margin-bottom: 24px;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.level3 + .level3 {
+  margin-top: 48px;
+  padding-top: 48px;
+  border-top: 1px solid var(--rule);
+}
+
+ul { margin: 0; padding-left: 1.3em; }
+
+li { padding-left: 0.25em; margin-bottom: 20px; }
+
+li::marker { color: var(--muted); }
+
+li:last-child, .level3 > p:last-child { margin-bottom: 0; }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #161617;
+    --text: #f5f5f7;
+    --muted: #a6a6ad;
+    --rule: #38383d;
+    --link: #6bb7ff;
+    --focus: #8cc7ff;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero { padding: 64px 24px 48px; }
+  .hero-role { font-size: 20px; margin-top: 20px; }
+  .hero-contact { margin-top: 16px; }
+  .downloads { flex-direction: column; max-width: 320px; gap: 12px; margin-top: 28px; }
+  .download-note { max-width: 340px; }
+  main { padding-top: 40px; padding-bottom: 72px; }
+  h2 { font-size: 30px; }
+  h3 { font-size: 23px; }
+  .level2 + .level2 { margin-top: 48px; }
+  .level3 + .level3 { margin-top: 36px; padding-top: 36px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .download-button { transition: none; }
+}
+
+@media print {
+  :root { color-scheme: light; --background: #fff; --text: #000; --muted: #444; --rule: #ccc; --link: #000; font-size: 12pt; }
+  .hero { padding: 0 0 24px; }
+  .hero h1 { font-size: 28pt; }
+  .hero-role { font-size: 14pt; }
+  .skip-link, .downloads, .download-note { display: none; }
+  main { max-width: none; padding: 24px 0 0; }
+  h2 { font-size: 20pt; }
+  h3 { font-size: 16pt; break-after: avoid; }
+  a { text-decoration: none; }
+}

@@ -5,6 +5,9 @@ SOURCE := resume.md
 OUT ?= site
 METADATA := metadata.json
 METADATA_TOOL := scripts/metadata.py
+WEB_TEMPLATE := templates/web.html
+WEB_FILTER := scripts/web.lua
+WEB_STYLE := styles/resume.css
 TITLE := $(shell python3 $(METADATA_TOOL) title)
 
 PDF_FLAGS := --pdf-engine=typst -V mainfont=Times
@@ -16,16 +19,21 @@ all: site
 # Everything the Pages site serves: index.html links to resume.pdf and resume.md.
 site: html pdf $(OUT)/resume.md $(OUT)/.nojekyll $(OUT)/sitemap.xml
 
-html: $(OUT)/index.html
+html: $(OUT)/index.html $(OUT)/$(WEB_STYLE)
 
 pdf: $(OUT)/resume.pdf
 
-$(OUT)/index.html: $(SOURCE) Makefile $(METADATA) $(METADATA_TOOL)
+$(OUT)/index.html: $(SOURCE) Makefile $(METADATA) $(METADATA_TOOL) $(WEB_TEMPLATE) $(WEB_FILTER) $(WEB_STYLE)
 	@mkdir -p $(OUT)
 	pandoc $(SOURCE) -s --metadata lang=en --metadata pagetitle="$(TITLE)" \
 		-H <(python3 $(METADATA_TOOL) html) \
-		-B <(echo '<p><a href="resume.pdf">Download PDF</a> · <a href="resume.md">Markdown</a></p>') \
+		--template=$(WEB_TEMPLATE) --lua-filter=$(WEB_FILTER) \
+		--section-divs --css=$(WEB_STYLE) \
 		-o $(OUT)/index.html
+
+$(OUT)/$(WEB_STYLE): $(WEB_STYLE)
+	@mkdir -p $(@D)
+	cp -- $< $@
 
 $(OUT)/resume.pdf: $(SOURCE) Makefile $(METADATA) $(METADATA_TOOL)
 	@mkdir -p $(OUT)

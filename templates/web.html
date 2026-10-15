@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="$lang$">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>$pagetitle$</title>
+$for(header-includes)$
+  $header-includes$
+$endfor$
+$for(css)$
+  <link rel="stylesheet" href="$css$">
+$endfor$
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to resume</a>
+  <header class="hero">
+    $resume-name$
+    <div class="hero-role">$resume-role$</div>
+    <div class="hero-contact">$resume-contact$</div>
+    <nav class="downloads" aria-label="Resume downloads" aria-describedby="download-note">
+      <a class="download-button" href="resume.pdf" download="resume.pdf">Download PDF</a>
+      <a class="download-button" href="resume.md" download="resume.md">Download Markdown</a>
+    </nav>
+    <p class="download-note" id="download-note">PDF for humans. Markdown for agents. I’m trying to make a good impression on both.</p>
+  </header>
+  <main id="main" tabindex="-1">
+    $body$
+  </main>
+</body>
+</html>

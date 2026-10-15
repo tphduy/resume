@@ -3,7 +3,7 @@ name: Publish resume
 on:
   push:
     branches: [main, ci-build]
-    paths: [resume.md, Makefile, metadata.json, 'scripts/**', .github/workflows/publish.yml]
+    paths: [resume.md, Makefile, metadata.json, 'scripts/**', 'templates/**', styles/resume.css, .github/workflows/publish.yml]
   workflow_dispatch:
 
 permissions:
