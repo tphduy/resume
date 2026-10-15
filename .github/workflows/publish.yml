@@ -4,8 +4,6 @@ on:
   push:
     branches: [main, ci-build]
     paths: [resume.md, Makefile, .github/workflows/publish.yml]
-  schedule:
-    - cron: "17 3 * * 1" # weekly: keeps the font cache from expiring (7 days idle)
   workflow_dispatch:
 
 permissions:
@@ -23,21 +21,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # Cache every SF Pro face, not only the four the resume uses, so a change in
-      # which faces it needs does not require re-downloading from Apple. `make fonts`
-      # downloads only when this cache is empty.
-      - name: Restore SF Pro cache
-        id: sf-cache
-        uses: actions/cache@v4
-        with:
-          path: sf-fonts
-          key: sf-pro-v1
-
       - name: Install tools
         run: brew install pandoc typst poppler
 
       - name: Build and verify
-        run: make fonts site verify OUT=site FONT_PATH=fonts
+        run: make site verify OUT=site
 
       - uses: actions/upload-pages-artifact@v3
         with:

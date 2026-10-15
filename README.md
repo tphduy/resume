@@ -9,6 +9,7 @@ GitHub Actions builds both from `resume.md`.
     brew install pandoc typst poppler   # poppler: `verify`
     make site verify                    # writes site/
 
-Needs SF Pro Text ([download](https://developer.apple.com/fonts/)), or
-`make fonts FONT_PATH=fonts` and pass the same `FONT_PATH` to `make`.
-Variables: `OUT` (default `site`), `FONT_PATH`.
+The website uses the browser's default font. PDFs use Times to match Safari's
+default serif appearance, with Pandoc/Typst defaults for page layout.
+
+Variable: `OUT` (default `site`).
