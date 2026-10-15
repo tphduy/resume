@@ -82,11 +82,27 @@ a:focus-visible {
   color: var(--muted);
   font-size: 15px;
   line-height: 1.8;
-  text-wrap: balance;
-  overflow-wrap: anywhere;
 }
 
-.hero-contact a { white-space: nowrap; }
+.contact-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: center;
+  gap: 6px 20px;
+}
+
+.contact-row + .contact-row { margin-top: 7px; }
+
+.contact-item { white-space: nowrap; }
+
+.contact-country {
+  margin-right: 5px;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}
+
+.hero-contact a { text-decoration: none; }
+.hero-contact a:hover { text-decoration: underline; }
 
 .downloads {
   display: flex;

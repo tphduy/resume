@@ -7,6 +7,7 @@ METADATA := metadata.json
 METADATA_TOOL := scripts/metadata.py
 WEB_TEMPLATE := templates/web.html
 WEB_FILTER := scripts/web.lua
+CONTACT_FILTER := scripts/contacts.lua
 WEB_STYLE := styles/resume.css
 TITLE := $(shell python3 $(METADATA_TOOL) title)
 
@@ -23,11 +24,11 @@ html: $(OUT)/index.html $(OUT)/$(WEB_STYLE)
 
 pdf: $(OUT)/resume.pdf
 
-$(OUT)/index.html: $(SOURCE) Makefile $(METADATA) $(METADATA_TOOL) $(WEB_TEMPLATE) $(WEB_FILTER) $(WEB_STYLE)
+$(OUT)/index.html: $(SOURCE) Makefile $(METADATA) $(METADATA_TOOL) $(WEB_TEMPLATE) $(WEB_FILTER) $(CONTACT_FILTER) $(WEB_STYLE)
 	@mkdir -p $(OUT)
 	pandoc $(SOURCE) -s --metadata lang=en --metadata pagetitle="$(TITLE)" \
 		-H <(python3 $(METADATA_TOOL) html) \
-		--template=$(WEB_TEMPLATE) --lua-filter=$(WEB_FILTER) \
+		--template=$(WEB_TEMPLATE) --lua-filter=$(CONTACT_FILTER) --lua-filter=$(WEB_FILTER) \
 		--section-divs --css=$(WEB_STYLE) \
 		-o $(OUT)/index.html
 
@@ -35,9 +36,9 @@ $(OUT)/$(WEB_STYLE): $(WEB_STYLE)
 	@mkdir -p $(@D)
 	cp -- $< $@
 
-$(OUT)/resume.pdf: $(SOURCE) Makefile $(METADATA) $(METADATA_TOOL)
+$(OUT)/resume.pdf: $(SOURCE) Makefile $(METADATA) $(METADATA_TOOL) $(CONTACT_FILTER)
 	@mkdir -p $(OUT)
-	pandoc $(SOURCE) $(PDF_FLAGS) --metadata lang=en \
+	pandoc $(SOURCE) $(PDF_FLAGS) --lua-filter=$(CONTACT_FILTER) --metadata lang=en \
 		-B <(python3 $(METADATA_TOOL) pdf) -o $(OUT)/resume.tmp.pdf
 	@mv -- $(OUT)/resume.tmp.pdf $(OUT)/resume.pdf
 

@@ -2,7 +2,7 @@
 
 **Staff Software Engineer** · Mobile Infrastructure · AI-Native Engineering
 
-Singapore · [LinkedIn](https://www.linkedin.com/in/tphduy/) · [tphduy@gmail.com](mailto:tphduy@gmail.com) · [+84 383 330 246](tel:+84383330246) · [+65 8196 9978](tel:+6581969978)
+[Singapore](https://www.visitsingapore.com/travel-tips/about-singapore/ "English, with a local dependency.") · [LinkedIn](https://www.linkedin.com/in/tphduy/) · [tphduy@gmail.com](mailto:tphduy@gmail.com) · [+84 383 330 246](tel:+84383330246) · [+65 8196 9978](tel:+6581969978)
 
 ## Summary
 

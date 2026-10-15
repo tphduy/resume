@@ -3,7 +3,8 @@ function Pandoc(doc)
   local blocks = doc.blocks
   if not (blocks[1] and blocks[1].t == "Header" and blocks[1].level == 1
       and blocks[2] and blocks[2].t == "Para"
-      and blocks[3] and blocks[3].t == "Para"
+      and blocks[3] and blocks[3].t == "Div"
+      and blocks[3].classes:includes("contact-details")
       and blocks[4] and blocks[4].t == "Header" and blocks[4].level == 2) then
     error("Web resume must begin with a name H1, role paragraph, contact paragraph, then an H2 section.")
   end

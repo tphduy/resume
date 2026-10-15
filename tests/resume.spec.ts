@@ -51,6 +51,31 @@ for (const size of sizes) {
       });
     }
 
+    test('contact links remain readable and keyboard accessible', async ({ page }, testInfo) => {
+      await page.goto('/');
+      const contacts = page.locator('.hero-contact a');
+      const count = await contacts.count();
+      expect(count).toBeGreaterThan(0);
+      const boxes = [];
+      for (let i = 0; i < count; i++) {
+        const link = contacts.nth(i);
+        await expect(link).toBeInViewport({ ratio: 1 });
+        await tabTo(page, link);
+        await expect(link).toBeFocused();
+        const box = await link.boundingBox();
+        expect(box).not.toBeNull();
+        boxes.push(box!);
+      }
+      for (let i = 0; i < boxes.length; i++) {
+        for (const b of boxes.slice(i + 1)) {
+          const a = boxes[i];
+          expect(a.x + a.width <= b.x || b.x + b.width <= a.x
+            || a.y + a.height <= b.y || b.y + b.height <= a.y).toBe(true);
+        }
+      }
+      await page.locator('.hero').screenshot({ path: testInfo.outputPath('contact-header.png') });
+    });
+
     test('keyboard can skip the header and activate both downloads', async ({ page }) => {
       await page.goto('/');
       const skip = page.getByRole('link', { name: 'Skip to resume' });

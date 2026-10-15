@@ -11,9 +11,9 @@ make site verify                    # writes site/
 
 The website uses system sans-serif fonts and follows the visitor's light or dark appearance. Both download buttons save the original file: PDF for sharing and recruitment uploads, Markdown for agent-assisted reading and summarization.
 
-Web presentation lives in `templates/web.html` and `styles/resume.css`. An HTML-only filter in `scripts/web.lua` places the existing name, role, and contacts in the page header. Resume wording stays in `resume.md`.
+Web presentation lives in `templates/web.html` and `styles/resume.css`. An HTML-only filter in `scripts/web.lua` places the existing name, role, and contacts in the page header. The shared `scripts/contacts.lua` filter groups contact details into two rows in both editions, marks Singapore and Vietnam phone numbers with flag emojis, and prints the profile address in the PDF. All contact values and resume wording stay in `resume.md`.
 
-PDFs use Times with Pandoc/Typst defaults for page layout. Web styling does not affect the PDF.
+PDFs use Times with Pandoc/Typst defaults for page layout and a smaller, left-aligned contact block. Web styling does not affect the PDF.
 
 Variable: `OUT` (default `site`).
 

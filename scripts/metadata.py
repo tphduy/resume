@@ -138,7 +138,8 @@ def verify(out, source):
     visible_contacts = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", contacts)
     for phone in re.findall(r"\+\d[\d ]+\d", visible_contacts):
         require(normalized(phone) in text, f"PDF phone missing: {phone}")
-    links = re.findall(r"\]\(([^)]+)\)", markdown)
+    # Extract destinations without optional Markdown hover titles.
+    links = re.findall(r"\]\(([^\s)]+)", markdown)
     urls = run("pdfinfo", "-url", path)
     for link in links:
         require(link in urls, f"PDF link missing: {link}")
