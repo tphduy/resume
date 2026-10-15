@@ -18,9 +18,10 @@ export default defineConfig({
     screenshot: 'only-on-failure',
   },
   webServer: {
-    command: `python3 -m http.server ${port} --bind 127.0.0.1 --directory "${output.replace(/[$`"\\]/g, '\\$&')}"`,
+    command: `python3 -u -m http.server ${port} --bind 127.0.0.1 --directory "${output.replace(/[$`"\\]/g, '\\$&')}"`,
     url: baseURL,
     reuseExistingServer: false,
-    timeout: 10_000,
+    stdout: 'pipe',
+    timeout: 60_000,
   },
 });

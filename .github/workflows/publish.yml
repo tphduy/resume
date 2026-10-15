@@ -46,6 +46,8 @@ jobs:
           npx playwright install chromium
 
       - name: Build, verify, and test
+        env:
+          DEBUG: pw:webserver
         run: make e2e OUT=site
 
       - name: Retain browser test evidence
