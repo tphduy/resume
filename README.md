@@ -1,7 +1,14 @@
 # Resume
 
-This repository hosts the public version of my resume in Markdown. The HTML page and PDF are built from [resume.md](resume.md) by GitHub Actions and published to GitHub Pages.
+The public version of [my resume](https://tphduy.github.io/resume), as
+[PDF](https://tphduy.github.io/resume/resume.pdf) and [Markdown](resume.md).
+GitHub Actions builds both from `resume.md`.
 
-- [HTML](https://tphduy.github.io/resume/)
-- [PDF](https://tphduy.github.io/resume/resume.pdf)
-- [resume.md](resume.md): Markdown source
+## Build locally
+
+    brew install pandoc typst poppler   # poppler: `verify`
+    make site verify                    # writes site/
+
+Needs SF Pro Text ([download](https://developer.apple.com/fonts/)), or
+`make fonts FONT_PATH=fonts` and pass the same `FONT_PATH` to `make`.
+Variables: `OUT` (default `site`), `FONT_PATH`.
