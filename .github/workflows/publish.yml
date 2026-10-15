@@ -3,7 +3,7 @@ name: Publish resume
 on:
   push:
     branches: [main, ci-build]
-    paths: [resume.md, .github/workflows/publish.yml]
+    paths: [resume.md, Makefile, .github/workflows/publish.yml]
   schedule:
     - cron: "17 3 * * 1" # weekly: keeps the font cache from expiring (7 days idle)
   workflow_dispatch:
@@ -59,16 +59,7 @@ jobs:
 
       - name: Build
         run: |
-          mkdir site
-          pandoc resume.md -s --metadata lang=en \
-            --metadata pagetitle="Tran Pham Hoang Duy – Staff Software Engineer" \
-            -B <(echo '<p><a href="resume.pdf">Download PDF</a> · <a href="resume.md">Markdown</a></p>') \
-            -o site/index.html
-          pandoc resume.md --pdf-engine=typst \
-            --pdf-engine-opt=--font-path --pdf-engine-opt=fonts \
-            -V mainfont="SF Pro Text" -V fontsize=10pt -V papersize=a4 \
-            -V margin.x=18mm -V margin.y=18mm \
-            -o site/resume.pdf
+          make html pdf OUT=site FONT_PATH=fonts
           cp resume.md site/
           touch site/.nojekyll
 
