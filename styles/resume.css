@@ -63,6 +63,48 @@ a:focus-visible {
   text-wrap: balance;
 }
 
+/* Name structure: dimmed under-brackets and labels on the H1 words.
+   The "/ ''" alt text keeps labels out of the accessible name; browsers without
+   it drop the label and keep the bracket. */
+.name-part {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.5em;
+  white-space: nowrap;
+}
+
+.name-part::before,
+.name-part::after {
+  position: absolute;
+  left: 0.06em;
+  right: 0.06em;
+  color: var(--muted);
+  pointer-events: none;
+  user-select: none;
+}
+
+.name-part::after {
+  content: "";
+  bottom: 0.3em;
+  height: 0.14em;
+  border: 0.035em solid currentColor;
+  border-top: 0;
+  border-radius: 0 0 0.1em 0.1em;
+  opacity: 0.25;
+}
+
+.name-part::before {
+  content: "";
+  content: attr(data-label) / "";
+  bottom: 0;
+  font-size: 0.2em;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
 .hero-role {
   max-width: 780px;
   margin: 24px auto 0;
@@ -228,6 +270,8 @@ li:last-child, .level3 > p:last-child { margin-bottom: 0; }
   .hero h1 { font-size: 28pt; }
   .hero-role { font-size: 14pt; }
   .skip-link, .downloads, .download-note { display: none; }
+  .name-part { padding-bottom: 0; }
+  .name-part::before, .name-part::after { display: none; }
   main { max-width: none; padding: 24px 0 0; }
   h2 { font-size: 20pt; }
   h3 { font-size: 16pt; break-after: avoid; }

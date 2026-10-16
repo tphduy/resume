@@ -76,6 +76,18 @@ for (const size of sizes) {
       await page.locator('.hero').screenshot({ path: testInfo.outputPath('contact-header.png') });
     });
 
+    test('name keeps its text while structure marks stay decorative and fit', async ({ page }, testInfo) => {
+      await page.goto('/');
+      const heading = page.getByRole('heading', { level: 1, name: 'Tran Pham Hoang Duy', exact: true });
+      await expect(heading).toHaveText('Tran Pham Hoang Duy');
+      const parts = heading.locator('.name-part');
+      await expect(parts).toHaveText(['Tran', 'Pham Hoang', 'Duy']);
+      const labels = await parts.evaluateAll((els) => els.map((el) => getComputedStyle(el, '::before').content));
+      expect(labels.map((content) => content.match(/Family|Middle|Given/)?.[0])).toEqual(['Family', 'Middle', 'Given']);
+      expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+      await page.locator('.hero').screenshot({ path: testInfo.outputPath('name-structure.png') });
+    });
+
     test('keyboard can skip the header and activate both downloads', async ({ page }) => {
       await page.goto('/');
       const skip = page.getByRole('link', { name: 'Skip to resume' });
